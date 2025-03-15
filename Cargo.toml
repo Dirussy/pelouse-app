@@ -1,0 +1,12 @@
+[package]
+name = "pelouse_application"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+adw = { version = "0.7.1", package = "libadwaita", features = ["v1_5"] }
+async-channel = "2.3.1"
+gtk = { version = "0.9.6", package = "gtk4", features = ["v4_16"] }
+
+[build-dependencies]
+glib-build-tools = "0.20.0"

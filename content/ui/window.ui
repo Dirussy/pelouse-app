@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Created with Cambalache 0.94.1 -->
+<interface>
+  <!-- interface-name window.ui -->
+  <requires lib="gtk" version="4.6"/>
+  <requires lib="libadwaita" version="1.4"/>
+  <template class="ProjectDatabaseRustWindow" parent="AdwApplicationWindow">
+    <property name="content">
+      <object class="AdwToolbarView" id="main_tool_bar_view">
+        <property name="content">
+          <object class="AdwViewStack" id="stack"/>
+        </property>
+        <child type="top">
+          <object class="AdwHeaderBar" id="header_bar"/>
+        </child>
+        <child type="bottom">
+          <object class="AdwViewSwitcherBar" id="switcher_bar">
+            <property name="reveal">True</property>
+            <property name="stack">stack</property>
+          </object>
+        </child>
+      </object>
+    </property>
+    <property name="default-height">700</property>
+    <style>
+      <class/>
+    </style>
+    <!-- Custom template fragments -->
+  </template>
+</interface>

@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Created with Cambalache 0.94.1 -->
+<interface>
+  <requires lib="gtk" version="4.12"/>
+  <requires lib="libadwaita" version="1.6"/>
+  <template class="ViewStackPageConsult" parent="AdwViewStackPage">
+    <property name="child">
+      <object class="AdwStatusPage">
+        <property name="child">
+          <object class="AdwClamp">
+            <property name="child">
+              <object class="GtkBox">
+                <property name="orientation">vertical</property>
+                <child>
+                  <object class="GtkDropDown">
+                    <property name="enable-search">True</property>
+                    <style>
+                      <class name="card"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwPreferencesGroup">
+                    <property name="title">info client</property>
+                    <child>
+                      <object class="AdwActionRow">
+                        <property name="title">Address</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="AdwActionRow">
+                        <property name="title">Price</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="AdwActionRow">
+                        <property name="title">Frequency</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="AdwExpanderRow">
+                        <property name="title">Note</property>
+                        <child>
+                          <object class="AdwActionRow"/>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwPreferencesGroup">
+                    <property name="title">Payement/Job</property>
+                    <child>
+                      <object class="AdwExpanderRow"/>
+                    </child>
+                    <child>
+                      <object class="AdwExpanderRow"/>
+                    </child>
+                  </object>
+                </child>
+                <style>
+                  <class name="boxed-list"/>
+                </style>
+              </object>
+            </property>
+            <property name="margin-bottom">20</property>
+            <property name="margin-end">20</property>
+            <property name="margin-start">20</property>
+            <property name="margin-top">20</property>
+          </object>
+        </property>
+        <property name="title">Clients liste</property>
+      </object>
+    </property>
+    <property name="icon-name">view-pim-contacts</property>
+    <property name="name">consult_page</property>
+    <property name="title">Clients</property>
+  </template>
+</interface>
