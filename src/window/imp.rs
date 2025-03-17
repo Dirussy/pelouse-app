@@ -1,13 +1,13 @@
 
-use std::cell::RefCell;
+// use std::cell::RefCell;
 
-use adw::ffi::AdwToolbarView;
 use glib::subclass::InitializingObject;
-// use gtk::ffi::GtkEntry;
-// use gtk::prelude::*;
-use adw::{ffi::AdwToolbarStyle, prelude::*};
+use adw::prelude::*;
 use adw::subclass::prelude::*;
-use gtk::{gio, glib, CompositeTemplate, Entry, ListBox};
+use gtk::{gio, glib, CompositeTemplate};
+
+use crate::page_new_client::PageNewClient;
+use crate::page_consult_client::PageConsultClient;
 
 // Object holding the state
 #[derive(CompositeTemplate, Default)]
@@ -21,7 +21,11 @@ pub struct Window {
     pub stack: TemplateChild<adw::ViewStack>,
     #[template_child]
     pub switcher_bar: TemplateChild<adw::ViewSwitcherBar>,
-    // pub tasks: RefCell<Option<gio::ListStore>>,
+    #[template_child]
+    pub page_new_client: TemplateChild<PageNewClient>,
+    #[template_child]
+    pub page_consult_client: TemplateChild<PageConsultClient>,
+    // // pub tasks: RefCell<Option<gio::ListStore>>,
 }
 
 // The central trait for subclassing a GObject
@@ -64,5 +68,5 @@ impl WindowImpl for Window {}
 // Trait shared by all application windows
 impl ApplicationWindowImpl for Window {}
 
-// Trait shared by all application windows
+// Trait shared by all adwaita application windows
 impl AdwApplicationWindowImpl for Window {}

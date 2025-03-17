@@ -3,8 +3,8 @@
 <interface>
   <requires lib="gtk" version="4.0"/>
   <requires lib="libadwaita" version="1.6"/>
-  <template class="ViewStackPageLog" parent="AdwViewStackPage">
-    <property name="child">
+  <template class="PageLog" parent="AdwBin">
+    <child>
       <object class="AdwStatusPage">
         <property name="child">
           <object class="AdwClamp">
@@ -36,9 +36,6 @@
         </property>
         <property name="title">Log data</property>
       </object>
-    </property>
-    <property name="icon-name">dialog-align-and-distribute</property>
-    <property name="name">log_page</property>
-    <property name="title">Log</property>
+    </child>
   </template>
 </interface>

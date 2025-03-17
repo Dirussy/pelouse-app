@@ -3,8 +3,8 @@
 <interface>
   <requires lib="gtk" version="4.12"/>
   <requires lib="libadwaita" version="1.6"/>
-  <template class="ViewStackPageConsult" parent="AdwViewStackPage">
-    <property name="child">
+  <template class="PageConsultClient" parent="AdwBin">
+    <child>
       <object class="AdwStatusPage">
         <property name="child">
           <object class="AdwClamp">
@@ -71,9 +71,6 @@
         </property>
         <property name="title">Clients liste</property>
       </object>
-    </property>
-    <property name="icon-name">view-pim-contacts</property>
-    <property name="name">consult_page</property>
-    <property name="title">Clients</property>
+    </child>
   </template>
 </interface>

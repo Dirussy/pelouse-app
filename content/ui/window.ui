@@ -8,7 +8,38 @@
     <property name="content">
       <object class="AdwToolbarView" id="main_tool_bar_view">
         <property name="content">
-          <object class="AdwViewStack" id="stack"/>
+          <object class="AdwViewStack" id="stack">
+            <child>
+              <object class="AdwViewStackPage" id="adw_page_new_client">
+                <property name="child">
+                  <object class="PageNewCLient" id="page_new_client"/>
+                </property>
+                <property name="icon-name">contact-new</property>
+                <property name="name">new-client-page</property>
+                <property name="title">New CLients</property>
+              </object>
+            </child>
+            <child>
+              <object class="AdwViewStackPage">
+                <property name="child">
+                  <object class="PageConsultClient" id="page_consult_client"/>
+                </property>
+                <property name="icon-name">view-pim-contacts</property>
+                <property name="title">Consult client</property>
+              </object>
+            </child>
+            <child>
+              <object class="AdwViewStackPage">
+                <property name="child">
+                  <object class="GtkLabel">
+                    <property name="label">Empty Page</property>
+                  </object>
+                </property>
+                <property name="icon-name">dialog-align-and-distribute</property>
+                <property name="title">Log</property>
+              </object>
+            </child>
+          </object>
         </property>
         <child type="top">
           <object class="AdwHeaderBar" id="header_bar"/>
@@ -23,7 +54,7 @@
     </property>
     <property name="default-height">700</property>
     <style>
-      <class/>
+      <class name="devel"/>
     </style>
     <!-- Custom template fragments -->
   </template>

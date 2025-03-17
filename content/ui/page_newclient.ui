@@ -2,14 +2,11 @@
 <!-- Created with Cambalache 0.94.1 -->
 <interface>
   <requires lib="libadwaita" version="1.0"/>
-  <template class="ViewStackPageClient" parent="AdwViewStackPage">
+  <template class="PageNewCLient" parent="AdwBin">
     <property name="child">
       <object class="AdwStatusPage">
         <property name="title">Page New CLient</property>
       </object>
     </property>
-    <property name="icon-name">contact-new</property>
-    <property name="name">New Client</property>
-    <property name="title">New CLient</property>
   </template>
 </interface>

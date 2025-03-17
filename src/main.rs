@@ -2,7 +2,10 @@ mod window;
 
 use gtk::prelude::*;
 use gtk::{gio, glib};
+
 use window::Window;
+pub mod page_new_client;
+pub mod page_consult_client;
 
 const APP_ID: &str = "org.gtk_rs.pelouseApp";
 
