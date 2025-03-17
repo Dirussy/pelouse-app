@@ -2,9 +2,9 @@
 // use std::cell::RefCell;
 
 use glib::subclass::InitializingObject;
-use adw::prelude::*;
+// use adw::prelude::*;
 use adw::subclass::prelude::*;
-use gtk::{gio, glib, CompositeTemplate};
+use gtk::{glib, CompositeTemplate};
 
 use crate::page_new_client::PageNewClient;
 use crate::page_consult_client::PageConsultClient;
@@ -53,7 +53,7 @@ impl ObjectImpl for Window {
         self.parent_constructed();
 
         //Setup
-        let obj = self.obj();
+        // let obj = self.obj();
         // obj.setup_task();
         // obj.setup_callback
     }

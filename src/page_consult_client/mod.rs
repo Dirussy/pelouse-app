@@ -1,9 +1,9 @@
 mod imp;
 
-use glib::{clone, Object};
-use gtk::{gio, glib};
-use adw::prelude::*;
-use adw::subclass::prelude::*;
+use glib::{Object};
+use gtk::{glib};
+// use adw::prelude::*;
+// use adw::subclass::prelude::*;
 
 glib::wrapper! {
     pub struct PageConsultClient(ObjectSubclass<imp::PageConsultClient>)

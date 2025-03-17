@@ -2,9 +2,9 @@
 // use std::cell::RefCell;
 
 use glib::subclass::InitializingObject;
-use adw::prelude::*;
+// use adw::prelude::*;
 use adw::subclass::prelude::*;
-use gtk::{gio, glib, CompositeTemplate};
+use gtk::{glib, CompositeTemplate}; 
 
 // Object holding the state
 #[derive(CompositeTemplate, Default)]
@@ -37,7 +37,7 @@ impl ObjectImpl for PageConsultClient {
         self.parent_constructed();
 
         //Setup
-        let obj = self.obj();
+        // let obj = self.obj();
         // obj.setup_task();
         // obj.setup_callback
     }

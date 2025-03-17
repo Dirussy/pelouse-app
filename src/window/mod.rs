@@ -1,9 +1,9 @@
 mod imp;
 
-use glib::{clone, Object};
+use glib::{Object};
 use gtk::{gio, glib};
-use adw::prelude::*;
-use adw::subclass::prelude::*;
+// use adw::prelude::*;
+// use adw::subclass::prelude::*;
 
 glib::wrapper! {
     pub struct Window(ObjectSubclass<imp::Window>)

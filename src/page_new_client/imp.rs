@@ -2,14 +2,27 @@
 // use std::cell::RefCell;
 
 use glib::subclass::InitializingObject;
-use adw::prelude::*;
+// use adw::prelude::*;
 use adw::subclass::prelude::*;
-use gtk::{gio, glib, CompositeTemplate};
+use gtk::{glib, CompositeTemplate};
 
 // Object holding the state
 #[derive(CompositeTemplate, Default)]
 #[template(resource = "/org/gtk_rs/PelouseApp/ui/page_newclient.ui")]
 pub struct PageNewClient {
+    #[template_child]
+    pub entry_row_name: TemplateChild<adw::EntryRow>,
+    #[template_child]
+    pub entry_row_address: TemplateChild<adw::EntryRow>,
+    #[template_child]
+    pub spin_row_price: TemplateChild<adw::SpinRow>,
+    #[template_child]
+    pub spin_row_frequency: TemplateChild<adw::SpinRow>,
+    #[template_child]
+    pub toggle_bag_row: TemplateChild<adw::SwitchRow>,
+    #[template_child]
+    pub entry_row_note: TemplateChild<adw::EntryRow>,
+    
 }
 
 // The central trait for subclassing a GObject
@@ -22,7 +35,12 @@ impl ObjectSubclass for PageNewClient {
 
     fn class_init(klass: &mut Self::Class) {
         
-        klass.bind_template();        
+        klass.bind_template();   
+
+        klass.install_action("win.add_new_client", None, move|win,_,_|{
+            win.new_client_button_pressed();
+        });
+             
     }
 
     fn instance_init(obj: &InitializingObject<Self>) {
@@ -37,9 +55,6 @@ impl ObjectImpl for PageNewClient {
         self.parent_constructed();
 
         //Setup
-        let obj = self.obj();
-        // obj.setup_task();
-        // obj.setup_callback
     }
 }
 

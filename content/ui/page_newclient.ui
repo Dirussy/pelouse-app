@@ -46,7 +46,7 @@
                       </object>
                     </child>
                     <child>
-                      <object class="AdwSpinRow">
+                      <object class="AdwSpinRow" id="spin_row_frequency">
                         <property name="adjustment">
                           <object class="GtkAdjustment">
                             <property name="lower">-1.0</property>
@@ -70,12 +70,13 @@
                   <object class="AdwPreferencesGroup">
                     <property name="title">Optional Info</property>
                     <child>
-                      <object class="AdwEntryRow"/>
+                      <object class="AdwEntryRow" id="entry_row_note"/>
                     </child>
                   </object>
                 </child>
                 <child>
                   <object class="GtkButton">
+                    <property name="action-name">win.add_new_client</property>
                     <property name="label">Add Client</property>
                     <style>
                       <class name="suggested-action"/>
