@@ -12,8 +12,17 @@
               <object class="GtkBox">
                 <property name="orientation">vertical</property>
                 <child>
-                  <object class="GtkDropDown">
+                  <object class="GtkDropDown" id="drop_down_client">
                     <property name="enable-search">True</property>
+                    <property name="model">
+                      <object class="GtkStringList">
+                        <items>
+                          <item>true</item>
+                          <item>Maxim Guerard</item>
+                          <item>Gabriel Martin</item>
+                        </items>
+                      </object>
+                    </property>
                     <style>
                       <class name="card"/>
                     </style>

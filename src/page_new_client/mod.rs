@@ -5,6 +5,8 @@ use gtk::{glib};
 use adw::prelude::*;
 use adw::subclass::prelude::*;
 
+use crate::sqlite_functions::{Client,connect_database,add_client};
+
 glib::wrapper! {
     pub struct PageNewClient(ObjectSubclass<imp::PageNewClient>)
         @extends adw::Bin, gtk::Widget,
@@ -24,14 +26,18 @@ impl PageNewClient {
         let frequency_entry = &*imp.spin_row_frequency;
         let toggle_bag = &*imp.toggle_bag_row;
         let entry_optional_info = &*imp.entry_row_note;
-        println!("New Client {}, {}, {}, {}, {}, {}", 
-            entry_name.text(),
-            entry_address.text(),
-            price_entry.value(),
-            frequency_entry.value(),
-            toggle_bag.is_active(),
-            entry_optional_info.text()
+        let new_client = Client::new(
+                &entry_name.text().as_str(),
+                &entry_address.text().as_str(),
+                price_entry.value(),
+                frequency_entry.value() as i32,
+                toggle_bag.is_active(),
+                &entry_optional_info.text().as_str()
             );
+        let database = connect_database("PelouseData.db")
+            .expect("Erreur when oppening database!");
+        add_client(&database, &new_client);
+        println!("{:?}", new_client);
     }
 }
 

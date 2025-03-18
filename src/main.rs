@@ -7,6 +7,8 @@ use window::Window;
 pub mod page_new_client;
 pub mod page_consult_client;
 
+pub mod sqlite_functions;
+
 const APP_ID: &str = "org.gtk_rs.pelouseApp";
 
 fn main() -> glib::ExitCode {

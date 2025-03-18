@@ -4,12 +4,14 @@
 use glib::subclass::InitializingObject;
 // use adw::prelude::*;
 use adw::subclass::prelude::*;
-use gtk::{glib, CompositeTemplate}; 
+use gtk::{glib, CompositeTemplate, DropDown}; 
 
 // Object holding the state
 #[derive(CompositeTemplate, Default)]
 #[template(resource = "/org/gtk_rs/PelouseApp/ui/page_consult_client.ui")]
 pub struct PageConsultClient {
+    #[template_child]
+    pub drop_down_client: TemplateChild<DropDown>,
 }
 
 // The central trait for subclassing a GObject
@@ -37,8 +39,8 @@ impl ObjectImpl for PageConsultClient {
         self.parent_constructed();
 
         //Setup
-        // let obj = self.obj();
-        // obj.setup_task();
+         let obj = self.obj();
+         obj.setup_list_client();
         // obj.setup_callback
     }
 }
