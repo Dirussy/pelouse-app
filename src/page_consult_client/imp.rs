@@ -24,7 +24,8 @@ impl ObjectSubclass for PageConsultClient {
 
     fn class_init(klass: &mut Self::Class) {
         
-        klass.bind_template();        
+        klass.bind_template();   
+        
     }
 
     fn instance_init(obj: &InitializingObject<Self>) {
