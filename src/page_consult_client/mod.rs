@@ -61,19 +61,14 @@ impl PageConsultClient {
         drop_menu.connect_selected_notify(clone!(
             #[weak(rename_to = window)]
             self, move|_|{
-                let nom_client = window.get_selected_client_name();
                 let address_row = &*window.imp().address_row;
-                println!("Client selectionner {}", &nom_client);
-                if nom_client != "None"
+                let name_client = window.get_selected_client_name();
+                // println!("Client selectionner {}", &name_client);
+                if name_client != "None"
                 {
-                    let conn = Connection::open("PelouseData.db").expect("Cannot open database");
-                    let address: String = conn.query_row_and_then(
-                        "SELECT address FROM liste_clients WHERE name_client=?1",
-                        [nom_client],
-                        |row| row.get(0),
-                    ).unwrap();
-                    println!("{address}");
-                    address_row.set_subtitle(&address);
+                    let client_donner = Client::laod_from_name(&name_client);
+                    window.load_page_consult_client(&client_donner);
+                    // println!("{:?}", client_donner);
                 }
 
             }
@@ -87,6 +82,20 @@ impl PageConsultClient {
             None => String::from("None")
         };
         client_name
+    }
+    pub fn load_page_consult_client(&self, client : &Client)
+    {
+        let address_row = &*self.imp().address_row;
+        address_row.set_subtitle(&client.address());
+        let price_row = &*self.imp().price_row;
+        price_row.set_subtitle(format!("{}$", &client.cost()).as_str());
+        let freq_row = &*self.imp().freq_row;
+        freq_row.set_subtitle(format!("{} days", &client.freq()).as_str());
+        let bag_row = &*self.imp().bag_row;
+        bag_row.set_active(*client.is_bag_use());
+        let note_row = &*self.imp().note_entry;
+        note_row.set_subtitle(&client.note());
+
     }
 }
 

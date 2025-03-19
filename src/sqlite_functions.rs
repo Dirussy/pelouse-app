@@ -21,6 +21,58 @@ impl Client{
             note : note.to_string()
         }
     } 
+    pub fn laod_from_name(name: &str) ->Client
+    {
+        let conn = Connection::open("PelouseData.db").expect("Cannot open database");
+            let address: String = conn.query_row_and_then(
+                "SELECT address FROM liste_clients WHERE name_client=?1",
+                [name],
+                |row| row.get(0),
+            ).unwrap();
+            let cost: f64 = conn.query_row_and_then(
+                "SELECT cost FROM liste_clients WHERE name_client=?1",
+                [name],
+                |row| row.get(0),
+            ).unwrap();
+            let freq: i32 = conn.query_row_and_then(
+                "SELECT freq FROM liste_clients WHERE name_client=?1",
+                [name],
+                |row| row.get(0),
+            ).unwrap();
+            let bag: bool = conn.query_row_and_then(
+                "SELECT bag FROM liste_clients WHERE name_client=?1",
+                [name],
+                |row| row.get(0),
+            ).unwrap();
+            let note: String = conn.query_row_and_then(
+                "SELECT note FROM liste_clients WHERE name_client=?1",
+                [name],
+                |row| row.get(0),
+            ).unwrap();
+
+            Client::new(name, &address, cost, freq, bag, &note)
+    }
+
+    pub fn name(&self) -> &String{
+        &self.name
+    }
+    pub fn address(&self) -> &String{
+        &self.address
+    }
+    pub fn cost(&self) -> &f64{
+        &self.cost
+    }
+    pub fn freq(&self) -> &i32{
+        &self.freq
+    }
+    pub fn is_bag_use(&self) -> &bool{
+        &self.bag
+    }
+    pub fn note(&self) -> &String{
+        &self.note
+    }
+    
+    
 }
 pub fn connect_database(path_to_file : &str) -> Result<Connection>
 {

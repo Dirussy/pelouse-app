@@ -14,6 +14,14 @@ pub struct PageConsultClient {
     pub drop_down_client: TemplateChild<DropDown>,
     #[template_child]
     pub address_row: TemplateChild<adw::ActionRow>,
+    #[template_child]
+    pub price_row: TemplateChild<adw::ActionRow>,
+    #[template_child]
+    pub freq_row: TemplateChild<adw::ActionRow>,
+    #[template_child]
+    pub bag_row: TemplateChild<adw::SwitchRow>,
+    #[template_child]
+    pub note_entry: TemplateChild<adw::ActionRow>,
 }
 
 // The central trait for subclassing a GObject
