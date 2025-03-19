@@ -12,6 +12,8 @@ use gtk::{glib, CompositeTemplate, DropDown};
 pub struct PageConsultClient {
     #[template_child]
     pub drop_down_client: TemplateChild<DropDown>,
+    #[template_child]
+    pub address_row: TemplateChild<adw::ActionRow>,
 }
 
 // The central trait for subclassing a GObject

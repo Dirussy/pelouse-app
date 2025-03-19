@@ -15,14 +15,9 @@
                   <object class="GtkDropDown" id="drop_down_client">
                     <property name="enable-search">True</property>
                     <property name="model">
-                      <object class="GtkStringList">
-                        <items>
-                          <item>true</item>
-                          <item>Maxim Guerard</item>
-                          <item>Gabriel Martin</item>
-                        </items>
-                      </object>
+                      <object class="GtkStringList"/>
                     </property>
+                    <property name="search-match-mode">substring</property>
                     <style>
                       <class name="card"/>
                     </style>
@@ -32,7 +27,7 @@
                   <object class="AdwPreferencesGroup">
                     <property name="title">info client</property>
                     <child>
-                      <object class="AdwActionRow">
+                      <object class="AdwActionRow" id="address_row">
                         <property name="title">Address</property>
                       </object>
                     </child>
