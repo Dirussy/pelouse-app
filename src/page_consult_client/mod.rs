@@ -95,6 +95,8 @@ impl PageConsultClient {
         bag_row.set_active(*client.is_bag_use());
         let note_row = &*self.imp().note_entry;
         note_row.set_subtitle(&client.note());
+        let custom_pay_row = &*self.imp().custom_payement_row;
+        custom_pay_row.set_value(*client.cost());
 
     }
 }
