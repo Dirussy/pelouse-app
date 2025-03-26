@@ -4,11 +4,11 @@
 use glib::subclass::InitializingObject;
 // use adw::prelude::*;
 use adw::subclass::prelude::*;
-use gtk::{glib, CompositeTemplate, DropDown}; 
+use gtk::{glib, CompositeTemplate, DropDown};
 
 // Object holding the state
 #[derive(CompositeTemplate, Default)]
-#[template(resource = "/org/gtk_rs/PelouseApp/ui/page_consult_client.ui")]
+#[template(resource = "/org/gnome/pelouse_app_rust/ui/page_consult_client.ui")]
 pub struct PageConsultClient {
     #[template_child]
     pub drop_down_client: TemplateChild<DropDown>,
@@ -39,9 +39,9 @@ impl ObjectSubclass for PageConsultClient {
     type ParentType = adw::Bin;
 
     fn class_init(klass: &mut Self::Class) {
-        
-        klass.bind_template();   
-        
+
+        klass.bind_template();
+
     }
 
     fn instance_init(obj: &InitializingObject<Self>) {
@@ -66,5 +66,5 @@ impl ObjectImpl for PageConsultClient {
 // Trait shared by all widgets
 impl WidgetImpl for PageConsultClient {}
 
-// // Trait shared by all 
+// // Trait shared by all
  impl BinImpl for PageConsultClient {}

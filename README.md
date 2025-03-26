@@ -1,2 +1,3 @@
-# pelouse-app
-Pelouse_libawaita_app
+# pelouse-app-rust
+
+A description of this project.

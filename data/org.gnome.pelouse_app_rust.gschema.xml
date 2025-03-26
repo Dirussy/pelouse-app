@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist gettext-domain="pelouse-app-rust">
+	<schema id="org.gnome.pelouse_app_rust" path="/org/gnome/pelouse_app_rust/">
+	</schema>
+</schemalist>

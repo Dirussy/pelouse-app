@@ -1,13 +1,13 @@
 [package]
-name = "pelouse_application"
+name = "pelouse-app-rust"
 version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-adw = { version = "0.7.1", package = "libadwaita", features = ["v1_5"] }
-async-channel = "2.3.1"
-gtk = { version = "0.9.6", package = "gtk4", features = ["v4_16"] }
-rusqlite = {version = "0.32.1", features = ["bundled"] }
+gettext-rs = { version = "0.7", features = ["gettext-system"] }
+gtk = { version = "0.9", package = "gtk4", features = ["gnome_47"] }
 
-[build-dependencies]
-glib-build-tools = "0.20.0"
+[dependencies.adw]
+package = "libadwaita"
+version = "0.7"
+features = ["v1_6"]

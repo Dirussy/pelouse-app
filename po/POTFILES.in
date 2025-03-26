@@ -1,0 +1,6 @@
+# List of source files containing translatable strings.
+# Please keep this file sorted alphabetically.
+data/org.gnome.pelouse_app_rust.desktop.in
+data/org.gnome.pelouse_app_rust.metainfo.xml.in
+data/org.gnome.pelouse_app_rust.gschema.xml
+src/window.ui

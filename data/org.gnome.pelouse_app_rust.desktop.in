@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=pelouse-app-rust
+Exec=pelouse-app-rust
+Icon=org.gnome.pelouse_app_rust
+Terminal=false
+Type=Application
+Categories=Utility;
+Keywords=GTK;
+StartupNotify=true
+DBusActivatable=true

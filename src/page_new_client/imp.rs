@@ -8,7 +8,7 @@ use gtk::{glib, CompositeTemplate};
 
 // Object holding the state
 #[derive(CompositeTemplate, Default)]
-#[template(resource = "/org/gtk_rs/PelouseApp/ui/page_newclient.ui")]
+#[template(resource = "/org/gnome/pelouse_app_rust/ui/page_newclient.ui")]
 pub struct PageNewClient {
     #[template_child]
     pub entry_row_name: TemplateChild<adw::EntryRow>,
@@ -22,7 +22,7 @@ pub struct PageNewClient {
     pub toggle_bag_row: TemplateChild<adw::SwitchRow>,
     #[template_child]
     pub entry_row_note: TemplateChild<adw::EntryRow>,
-    
+
 }
 
 // The central trait for subclassing a GObject
@@ -34,13 +34,13 @@ impl ObjectSubclass for PageNewClient {
     type ParentType = adw::Bin;
 
     fn class_init(klass: &mut Self::Class) {
-        
-        klass.bind_template();   
+
+        klass.bind_template();
 
         klass.install_action("win.add_new_client", None, move|win,_,_|{
             win.new_client_button_pressed();
         });
-             
+
     }
 
     fn instance_init(obj: &InitializingObject<Self>) {
@@ -61,5 +61,5 @@ impl ObjectImpl for PageNewClient {
 // Trait shared by all widgets
 impl WidgetImpl for PageNewClient {}
 
-// // Trait shared by all 
+// // Trait shared by all
  impl BinImpl for PageNewClient {}

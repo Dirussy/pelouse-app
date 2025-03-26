@@ -1,32 +1,58 @@
+/* main.rs
+ *
+ * Copyright 2025 Dirusy
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
+
+mod application;
+mod config;
 mod window;
+mod page_consult_client;
+mod page_new_client;
+mod sqlite_functions;
 
-use gtk::prelude::*;
+use self::application::PelouseAppRustApplication;
+use self::window::PelouseAppRustWindow;
+
+use config::{GETTEXT_PACKAGE, LOCALEDIR, PKGDATADIR};
+use gettextrs::{bind_textdomain_codeset, bindtextdomain, textdomain};
 use gtk::{gio, glib};
-
-use window::Window;
-pub mod page_new_client;
-pub mod page_consult_client;
-
-pub mod sqlite_functions;
-
-const APP_ID: &str = "org.gtk_rs.pelouseApp";
+use gtk::prelude::*;
 
 fn main() -> glib::ExitCode {
-    // Register and include resources
-    gio::resources_register_include!("content.gresource")
-        .expect("Failed to register resources.");
+    // Set up gettext translations
+    bindtextdomain(GETTEXT_PACKAGE, LOCALEDIR).expect("Unable to bind the text domain");
+    bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8")
+        .expect("Unable to set the text domain encoding");
+    textdomain(GETTEXT_PACKAGE).expect("Unable to switch to the text domain");
 
-    // Create a new application
-    let app = adw::Application::builder().application_id(APP_ID).build();
+    // Load resources
+    let resources = gio::Resource::load(PKGDATADIR.to_owned() + "/pelouse-app-rust.gresource")
+        .expect("Could not load resources");
+    gio::resources_register(&resources);
 
-    // Connect to "activate" signal of `app`
-    app.connect_activate(build_ui);
+    // Create a new GtkApplication. The application manages our main loop,
+    // application windows, integration with the window manager/compositor, and
+    // desktop features such as file opening and single-instance applications.
+    let app = PelouseAppRustApplication::new("org.gnome.pelouse_app_rust", &gio::ApplicationFlags::empty());
 
-    // Run the application
+    // Run the application. This function will block until the application
+    // exits. Upon return, we have our exit code to return to the shell. (This
+    // is the code you see when you do `echo $?` after running a command in a
+    // terminal.
     app.run()
-}
-fn build_ui(app: &adw::Application) {
-    // Create new window and present it
-    let window = Window::new(app);
-    window.present();
 }

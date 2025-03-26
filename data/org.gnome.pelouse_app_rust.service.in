@@ -1,0 +1,3 @@
+[D-BUS Service]
+Name=org.gnome.pelouse_app_rust
+Exec=@bindir@/pelouse-app-rust --gapplication-service
