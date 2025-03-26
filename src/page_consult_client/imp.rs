@@ -58,6 +58,7 @@ impl ObjectImpl for PageConsultClient {
         //Setup
          let obj = self.obj();
          obj.setup_list_client();
+         obj.setup_new_jobs();
         // obj.setup_callback
     }
 }

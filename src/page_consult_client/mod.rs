@@ -74,6 +74,9 @@ impl PageConsultClient {
             }
         ));
     }
+    pub fn setup_new_jobs(&self){
+        
+    }
     pub fn get_selected_client_name(&self) -> String {
         let drop_down = &*self.imp().drop_down_client;
         let client_name = match drop_down.selected_item()
