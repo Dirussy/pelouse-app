@@ -2,10 +2,11 @@ mod imp;
 
 use glib::{Object};
 use gtk::{glib};
-use adw::prelude::*;
+use adw::{ prelude::*};
 use adw::subclass::prelude::*;
 
-use crate::sqlite_functions::{Client,connect_database,add_client};
+
+use crate::sqlite_functions::Client;
 
 glib::wrapper! {
     pub struct PageNewClient(ObjectSubclass<imp::PageNewClient>)
@@ -18,7 +19,9 @@ impl PageNewClient {
         // Create new window
         Object::builder().build()
     }
-    fn new_client_button_pressed(&self){
+
+    pub fn charger_info_client(&self) -> Client
+    {
         let imp = self.imp();
         let entry_name = &*imp.entry_row_name;
         let entry_address = &*imp.entry_row_address;
@@ -34,10 +37,7 @@ impl PageNewClient {
                 toggle_bag.is_active(),
                 &entry_optional_info.text().as_str()
             );
-        let database = connect_database("PelouseData.db")
-            .expect("Erreur when oppening database!");
-        add_client(&database, &new_client);
-        println!("{:?}", new_client);
+        new_client
     }
 }
 

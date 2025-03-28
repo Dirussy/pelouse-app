@@ -7,89 +7,94 @@
     <property name="child">
       <object class="AdwStatusPage">
         <property name="child">
-          <object class="AdwClamp">
+          <object class="AdwToastOverlay" id="overlay">
             <property name="child">
-              <object class="GtkBox">
-                <property name="orientation">vertical</property>
-                <child>
-                  <object class="AdwPreferencesGroup">
-                    <property name="title">Info Client</property>
+              <object class="AdwClamp">
+                <property name="child">
+                  <object class="GtkBox">
+                    <property name="orientation">vertical</property>
+                    <property name="spacing">25</property>
                     <child>
-                      <object class="AdwEntryRow" id="entry_row_name">
-                        <property name="input-purpose">name</property>
-                        <property name="title">Name</property>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="AdwEntryRow" id="entry_row_address">
-                        <property name="title">Address</property>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-                <child>
-                  <object class="AdwPreferencesGroup">
-                    <property name="title">Info lawn</property>
-                    <child>
-                      <object class="AdwSpinRow" id="spin_row_price">
-                        <property name="adjustment">
-                          <object class="GtkAdjustment">
-                            <property name="step-increment">0.5</property>
-                            <property name="upper">100.0</property>
+                      <object class="AdwPreferencesGroup">
+                        <property name="title">Info Client</property>
+                        <child>
+                          <object class="AdwEntryRow" id="entry_row_name">
+                            <property name="input-purpose">name</property>
+                            <property name="title">Name</property>
                           </object>
-                        </property>
-                        <property name="climb-rate">0.5</property>
-                        <property name="digits">1</property>
-                        <property name="icon-name">wallet-open</property>
-                        <property name="subtitle">Price</property>
-                        <property name="value">1.0</property>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="AdwSpinRow" id="spin_row_frequency">
-                        <property name="adjustment">
-                          <object class="GtkAdjustment">
-                            <property name="lower">-1.0</property>
-                            <property name="page-increment">7.0</property>
-                            <property name="step-increment">1.0</property>
-                            <property name="upper">60.0</property>
+                        </child>
+                        <child>
+                          <object class="AdwEntryRow" id="entry_row_address">
+                            <property name="title">Address</property>
                           </object>
-                        </property>
-                        <property name="icon-name">view-calendar-week</property>
-                        <property name="subtitle">Frequency</property>
+                        </child>
                       </object>
                     </child>
                     <child>
-                      <object class="AdwSwitchRow" id="toggle_bag_row">
-                        <property name="subtitle">Bag</property>
+                      <object class="AdwPreferencesGroup">
+                        <property name="title">Info lawn</property>
+                        <child>
+                          <object class="AdwSpinRow" id="spin_row_price">
+                            <property name="adjustment">
+                              <object class="GtkAdjustment">
+                                <property name="step-increment">0.5</property>
+                                <property name="upper">100.0</property>
+                              </object>
+                            </property>
+                            <property name="climb-rate">0.5</property>
+                            <property name="digits">1</property>
+                            <property name="icon-name">wallet-open</property>
+                            <property name="subtitle">Price</property>
+                            <property name="value">1.0</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="AdwSpinRow" id="spin_row_frequency">
+                            <property name="adjustment">
+                              <object class="GtkAdjustment">
+                                <property name="lower">-1.0</property>
+                                <property name="page-increment">7.0</property>
+                                <property name="step-increment">1.0</property>
+                                <property name="upper">60.0</property>
+                              </object>
+                            </property>
+                            <property name="icon-name">view-calendar-week</property>
+                            <property name="subtitle">Frequency</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="AdwSwitchRow" id="toggle_bag_row">
+                            <property name="subtitle">Bag</property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="AdwPreferencesGroup">
+                        <property name="title">Optional Info</property>
+                        <child>
+                          <object class="AdwEntryRow" id="entry_row_note"/>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkButton">
+                        <property name="action-name">win.add_new_client</property>
+                        <property name="label">Add Client</property>
+                        <style>
+                          <class name="suggested-action"/>
+                          <class name="pill"/>
+                        </style>
                       </object>
                     </child>
                   </object>
-                </child>
-                <child>
-                  <object class="AdwPreferencesGroup">
-                    <property name="title">Optional Info</property>
-                    <child>
-                      <object class="AdwEntryRow" id="entry_row_note"/>
-                    </child>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkButton">
-                    <property name="action-name">win.add_new_client</property>
-                    <property name="label">Add Client</property>
-                    <style>
-                      <class name="suggested-action"/>
-                      <class name="pill"/>
-                    </style>
-                  </object>
-                </child>
+                </property>
+                <property name="margin-bottom">20</property>
+                <property name="margin-end">20</property>
+                <property name="margin-start">20</property>
+                <property name="margin-top">20</property>
               </object>
             </property>
-            <property name="margin-bottom">20</property>
-            <property name="margin-end">20</property>
-            <property name="margin-start">20</property>
-            <property name="margin-top">20</property>
           </object>
         </property>
         <property name="title">Page New CLient</property>
