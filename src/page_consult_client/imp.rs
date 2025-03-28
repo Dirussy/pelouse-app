@@ -3,7 +3,7 @@
 
 use glib::subclass::InitializingObject;
 // use adw::prelude::*;
-use adw::subclass::prelude::*;
+use adw::{prelude::ComboRowExt, subclass::prelude::*};
 use gtk::{glib, CompositeTemplate, DropDown};
 
 // Object holding the state
@@ -24,10 +24,24 @@ pub struct PageConsultClient {
     #[template_child]
     pub note_entry: TemplateChild<adw::ActionRow>,
     //Jobs Groups
+    #[template_child]
+    pub month_row_jobs: TemplateChild<adw::ComboRow>,
+    #[template_child]
+    pub day_spin_row_job: TemplateChild<adw::SpinRow>,
+    #[template_child]
+    pub years_spin_row_jobs: TemplateChild<adw::SpinRow>,
+
 
     //PayementsGroups
     #[template_child]
     pub custom_payement_row: TemplateChild<adw::SpinRow>,
+    #[template_child]
+    pub month_row_pay: TemplateChild<adw::ComboRow>,
+    #[template_child]
+    pub day_spin_row_pay: TemplateChild<adw::SpinRow>,
+    #[template_child]
+    pub years_spin_row_pay: TemplateChild<adw::SpinRow>,
+    
 }
 
 // The central trait for subclassing a GObject
@@ -41,6 +55,15 @@ impl ObjectSubclass for PageConsultClient {
     fn class_init(klass: &mut Self::Class) {
 
         klass.bind_template();
+
+        klass.install_action_async("win.add_job", None, |win,_,_| async move {
+            println!("add jobs!");
+            let month_row = &*win.imp().month_row_jobs;
+            println!("Month selected: {}", month_row.selected());
+        });
+        klass.install_action_async("win.add_payement", None, |_win,_,_| async move {
+            println!("add payement!");
+        });
 
     }
 
@@ -58,7 +81,7 @@ impl ObjectImpl for PageConsultClient {
         //Setup
          let obj = self.obj();
          obj.setup_list_client();
-         obj.setup_new_jobs();
+         obj.setup_date();
         // obj.setup_callback
     }
 }

@@ -97,8 +97,3 @@ impl WidgetImpl for PageNewClient {}
 // // Trait shared by all
  impl BinImpl for PageNewClient {}
 
-
- fn alert_function(win : &PageNewClient)
- {
-    println!("test");
- }

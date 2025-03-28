@@ -1,14 +1,14 @@
 mod imp;
 
-use std::{num::NonZero, thread::sleep};
+use chrono::Datelike;
 
-use adw::{prelude::{ActionRowExt, BinExt}, subclass::prelude::ObjectSubclassIsExt};
+use adw::{prelude::{ActionRowExt, ComboRowExt}, subclass::prelude::ObjectSubclassIsExt};
 use glib::{Object, clone};
 use gtk::{glib::{self, object::Cast, types::StaticType}, prelude::WidgetExt};
 // use adw::prelude::*;
 // use adw::subclass::prelude::*;
 
-use crate::sqlite_functions::{self, Client};
+use crate::sqlite_functions::{Client};
 use rusqlite::{self, Connection};
 
 glib::wrapper! {
@@ -24,7 +24,7 @@ impl PageConsultClient {
     }
     pub fn setup_list_client(&self){
         let drop_menu = &*self.imp().drop_down_client;
-        let address_row = &*self.imp().address_row;
+        // let address_row = &*self.imp().address_row;
 
         let exp = gtk::PropertyExpression::new(
             gtk::StringObject::static_type(),
@@ -61,7 +61,7 @@ impl PageConsultClient {
         drop_menu.connect_selected_notify(clone!(
             #[weak(rename_to = window)]
             self, move|_|{
-                let address_row = &*window.imp().address_row;
+                // let address_row = &*window.imp().address_row;
                 let name_client = window.get_selected_client_name();
                 // println!("Client selectionner {}", &name_client);
                 if name_client != "None"
@@ -74,8 +74,24 @@ impl PageConsultClient {
             }
         ));
     }
-    pub fn setup_new_jobs(&self){
+    pub fn setup_date(&self){
+        let local_date = chrono::Local::now();
         
+        let month_row_job = &*self.imp().month_row_jobs;
+        let day_row_job = &*self.imp().day_spin_row_job;
+        let years_row_job = &*self.imp().years_spin_row_jobs;
+
+        let month_row_pay = &*self.imp().month_row_pay;
+        let day_row_pay = &*self.imp().day_spin_row_pay;
+        let years_row_pay = &*self.imp().years_spin_row_pay;
+
+        month_row_job.set_selected(local_date.month() - 1);
+        day_row_job.set_value(local_date.day() as f64);
+        years_row_job.set_value(local_date.year() as f64);
+
+        month_row_pay.set_selected(local_date.month() - 1);
+        day_row_pay.set_value(local_date.day() as f64);
+        years_row_pay.set_value(local_date.year() as f64);
     }
     pub fn get_selected_client_name(&self) -> String {
         let drop_down = &*self.imp().drop_down_client;

@@ -95,6 +95,7 @@
                         <property name="title">Add Jobs Done</property>
                         <child>
                           <object class="GtkButton">
+                            <property name="action-name">win.add_job</property>
                             <property name="halign">center</property>
                             <property name="label">Add Job!</property>
                             <property name="valign">center</property>
@@ -172,6 +173,7 @@
                         <property name="title">Add Payement</property>
                         <child>
                           <object class="GtkButton">
+                            <property name="action-name">win.add_payement</property>
                             <property name="halign">center</property>
                             <property name="label">Add Payement!</property>
                             <property name="valign">center</property>
