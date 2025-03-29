@@ -61,14 +61,11 @@ impl PageConsultClient {
         drop_menu.connect_selected_notify(clone!(
             #[weak(rename_to = window)]
             self, move|_|{
-                // let address_row = &*window.imp().address_row;
                 let name_client = window.get_selected_client_name();
-                // println!("Client selectionner {}", &name_client);
                 if name_client != "None"
                 {
                     let client_donner = Client::laod_from_name(&name_client);
                     window.load_page_consult_client(&client_donner);
-                    // println!("{:?}", client_donner);
                 }
 
             }

@@ -43,7 +43,7 @@
 	(3,6,"AdwPreferencesGroup",None,3,None,None,None,2,None,None),
 	(3,7,"AdwBin","PageLog",None,None,None,None,0,None,None),
 	(4,1,"AdwStatusPage",None,14,None,None,None,0,None,None),
-	(4,2,"AdwClamp",None,1,None,None,None,0,None,None),
+	(4,2,"AdwClamp",None,50,None,None,None,0,None,None),
 	(4,3,"GtkBox",None,2,None,None,None,0,None,None),
 	(4,4,"GtkDropDown","drop_down_client",3,None,None,None,0,None,None),
 	(4,5,"AdwPreferencesGroup",None,3,None,None,None,1,None,None),
@@ -58,7 +58,7 @@
 	(4,17,"AdwSwitchRow","bag_row",5,None,None,None,4,None,None),
 	(4,23,"AdwActionRow",None,11,None,None,None,0,"	",None),
 	(4,24,"GtkButton",None,23,None,None,None,0,None,None),
-	(4,25,"AdwExpanderRow",None,11,None,None,None,1,None,None),
+	(4,25,"AdwExpanderRow","custom_date_job",11,None,None,None,1,None,None),
 	(4,26,"AdwComboRow","month_row_jobs",25,None,None,None,0,None,None),
 	(4,27,"GtkStringList",None,26,None,None,None,0,None,None),
 	(4,28,"AdwSpinRow","day_spin_row_job",25,None,None,None,1,None,None),
@@ -68,7 +68,7 @@
 	(4,32,"AdwPreferencesGroup",None,3,None,None,None,3,None,None),
 	(4,33,"AdwActionRow",None,32,None,None,None,0,None,None),
 	(4,34,"GtkButton",None,33,None,None,None,0,None,None),
-	(4,35,"AdwExpanderRow",None,32,None,None,None,3,None,None),
+	(4,35,"AdwExpanderRow","custom_date_pay",32,None,None,None,3,None,None),
 	(4,36,"AdwComboRow","month_row_pay",35,None,None,None,0,None,None),
 	(4,37,"GtkStringList",None,36,None,None,None,0,None,None),
 	(4,38,"AdwSpinRow","day_spin_row_pay",35,None,None,None,1,None,None),
@@ -82,7 +82,10 @@
 	(4,46,"AdwActionRow",None,45,None,None,None,0,None,None),
 	(4,47,"AdwActionRow",None,45,None,None,None,1,None,None),
 	(4,48,"GtkButton",None,46,None,None,None,0,None,None),
-	(4,49,"GtkButton",None,47,None,None,None,0,None,None)
+	(4,49,"GtkButton",None,47,None,None,None,0,None,None),
+	(4,50,"AdwToastOverlay","overlay",1,None,None,None,0,None,None),
+	(4,51,"AdwExpanderRow",None,32,None,None,None,4,None,None),
+	(4,52,"AdwEntryRow","note_entry_row_pay",51,None,None,None,0,None,None)
   </object>
   <object_property>
 	(1,1,"AdwApplicationWindow","content",None,None,None,None,None,2,None,None,None,None),
@@ -128,7 +131,6 @@
 	(2,13,"AdwActionRow","icon-name","view-calendar-week",None,None,None,None,None,None,None,None,None),
 	(2,13,"AdwActionRow","subtitle","Frequency",None,None,None,None,None,None,None,None,None),
 	(2,13,"AdwSpinRow","adjustment",None,None,None,None,None,14,None,None,None,None),
-	(2,14,"GtkAdjustment","lower","-1.0",None,None,None,None,None,None,None,None,None),
 	(2,14,"GtkAdjustment","page-increment","7.0",None,None,None,None,None,None,None,None,None),
 	(2,14,"GtkAdjustment","step-increment","1.0",None,None,None,None,None,None,None,None,None),
 	(2,14,"GtkAdjustment","upper","60.0",None,None,None,None,None,None,None,None,None),
@@ -145,7 +147,7 @@
 	(3,4,"AdwPreferencesGroup","title","Clients log",0,None,None,None,None,None,None,None,None),
 	(3,5,"AdwPreferencesGroup","title","Job log",0,None,None,None,None,None,None,None,None),
 	(3,6,"AdwPreferencesGroup","title","Paymentent log",0,None,None,None,None,None,None,None,None),
-	(4,1,"AdwStatusPage","child",None,0,None,None,None,2,None,None,None,None),
+	(4,1,"AdwStatusPage","child","50",0,None,None,None,50,None,None,None,None),
 	(4,1,"AdwStatusPage","title","Clients liste",0,None,None,None,None,None,None,None,None),
 	(4,2,"AdwClamp","child",None,0,None,None,None,3,None,None,None,None),
 	(4,2,"GtkWidget","margin-bottom","20",0,None,None,None,None,None,None,None,None),
@@ -224,7 +226,9 @@
 	(4,48,"GtkWidget","valign","center",None,None,None,None,None,None,None,None,None),
 	(4,49,"GtkButton","icon-name","gtk-info",None,None,None,None,None,None,None,None,None),
 	(4,49,"GtkWidget","halign","center",None,None,None,None,None,None,None,None,None),
-	(4,49,"GtkWidget","valign","center",None,None,None,None,None,None,None,None,None)
+	(4,49,"GtkWidget","valign","center",None,None,None,None,None,None,None,None,None),
+	(4,50,"AdwToastOverlay","child","2",None,None,None,None,2,None,None,None,None),
+	(4,51,"AdwPreferencesRow","title","Note",None,None,None,None,None,None,None,None,None)
   </object_property>
   <object_data>
 	(1,1,"GtkWidget",1,1,None,None,None,None,None,None),

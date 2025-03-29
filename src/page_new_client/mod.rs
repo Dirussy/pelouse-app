@@ -33,7 +33,7 @@ impl PageNewClient {
                 &entry_name.text().as_str(),
                 &entry_address.text().as_str(),
                 price_entry.value(),
-                frequency_entry.value() as i32,
+                frequency_entry.value() as u32,
                 toggle_bag.is_active(),
                 &entry_optional_info.text().as_str()
             );

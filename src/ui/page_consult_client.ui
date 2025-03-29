@@ -7,267 +7,279 @@
     <child>
       <object class="AdwStatusPage">
         <property name="child">
-          <object class="AdwClamp">
+          <object class="AdwToastOverlay" id="overlay">
             <property name="child">
-              <object class="GtkBox">
-                <property name="orientation">vertical</property>
-                <child>
-                  <object class="GtkDropDown" id="drop_down_client">
-                    <property name="enable-search">True</property>
-                    <property name="model">
-                      <object class="GtkStringList"/>
-                    </property>
-                    <property name="search-match-mode">substring</property>
+              <object class="AdwClamp">
+                <property name="child">
+                  <object class="GtkBox">
+                    <property name="orientation">vertical</property>
+                    <child>
+                      <object class="GtkDropDown" id="drop_down_client">
+                        <property name="enable-search">True</property>
+                        <property name="model">
+                          <object class="GtkStringList"/>
+                        </property>
+                        <property name="search-match-mode">substring</property>
+                        <style>
+                          <class name="card"/>
+                        </style>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="AdwPreferencesGroup">
+                        <property name="title">info client</property>
+                        <child>
+                          <object class="AdwActionRow" id="address_row">
+                            <property name="title">Address</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="AdwActionRow" id="price_row">
+                            <property name="title">Price</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="AdwActionRow" id="freq_row">
+                            <property name="title">Frequency</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="AdwExpanderRow">
+                            <property name="title">Payements and Jobs done</property>
+                            <child>
+                              <object class="AdwActionRow">
+                                <property name="subtitle">3 done </property>
+                                <property name="title">Number of Jobs done</property>
+                                <child>
+                                  <object class="GtkButton">
+                                    <property name="halign">center</property>
+                                    <property name="icon-name">gtk-info</property>
+                                    <property name="valign">center</property>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="AdwActionRow">
+                                <property name="subtitle">30$ missing 60$</property>
+                                <property name="title">Payement done</property>
+                                <child>
+                                  <object class="GtkButton">
+                                    <property name="halign">center</property>
+                                    <property name="icon-name">gtk-info</property>
+                                    <property name="valign">center</property>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="AdwSwitchRow" id="bag_row">
+                            <property name="title">Bag</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="AdwExpanderRow">
+                            <property name="title">Note</property>
+                            <child>
+                              <object class="AdwActionRow" id="note_entry"/>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="AdwPreferencesGroup">
+                        <property name="title">Jobs</property>
+                        <child>
+                          <object class="AdwActionRow">
+                            <property name="title">Add Jobs Done</property>
+                            <child>
+                              <object class="GtkButton">
+                                <property name="action-name">win.add_job</property>
+                                <property name="halign">center</property>
+                                <property name="label">Add Job!</property>
+                                <property name="valign">center</property>
+                                <style>
+                                  <class name="suggested-action"/>
+                                </style>
+                              </object>
+                            </child>
+                            <!-- Custom object fragments -->
+                          </object>
+                        </child>
+                        <child>
+                          <object class="AdwExpanderRow" id="custom_date_job">
+                            <property name="enable-expansion">False</property>
+                            <property name="show-enable-switch">True</property>
+                            <property name="title">Custom Date</property>
+                            <child>
+                              <object class="AdwComboRow" id="month_row_jobs">
+                                <property name="model">
+                                  <object class="GtkStringList">
+                                    <items>
+                                      <item>January</item>
+                                      <item>February</item>
+                                      <item>March</item>
+                                      <item>April</item>
+                                      <item>May</item>
+                                      <item>June</item>
+                                      <item>July</item>
+                                      <item>August</item>
+                                      <item>September</item>
+                                      <item>October</item>
+                                      <item>November</item>
+                                      <item>December</item>
+                                    </items>
+                                  </object>
+                                </property>
+                                <property name="title">Month</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="AdwSpinRow" id="day_spin_row_job">
+                                <property name="adjustment">
+                                  <object class="GtkAdjustment">
+                                    <property name="lower">1.0</property>
+                                    <property name="step-increment">1.0</property>
+                                    <property name="upper">31.0</property>
+                                  </object>
+                                </property>
+                                <property name="subtitle-selectable">True</property>
+                                <property name="title">Day</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="AdwSpinRow" id="years_spin_row_jobs">
+                                <property name="adjustment">
+                                  <object class="GtkAdjustment">
+                                    <property name="lower">2024.0</property>
+                                    <property name="step-increment">1.0</property>
+                                    <property name="upper">2040.0</property>
+                                    <property name="value">2025.0</property>
+                                  </object>
+                                </property>
+                                <property name="title">Years</property>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="AdwPreferencesGroup">
+                        <property name="title">Payements</property>
+                        <child>
+                          <object class="AdwActionRow">
+                            <property name="title">Add Payement</property>
+                            <child>
+                              <object class="GtkButton">
+                                <property name="action-name">win.add_payement</property>
+                                <property name="halign">center</property>
+                                <property name="label">Add Payement!</property>
+                                <property name="valign">center</property>
+                                <style>
+                                  <class name="suggested-action"/>
+                                </style>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="AdwSwitchRow" id="is_cash_row">
+                            <property name="title">Cash?</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="AdwSpinRow" id="custom_payement_row">
+                            <property name="adjustment">
+                              <object class="GtkAdjustment">
+                                <property name="step-increment">0.5</property>
+                                <property name="upper">200.0</property>
+                              </object>
+                            </property>
+                            <property name="digits">1</property>
+                            <property name="title">Payements</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="AdwExpanderRow" id="custom_date_pay">
+                            <property name="enable-expansion">False</property>
+                            <property name="show-enable-switch">True</property>
+                            <property name="title">Custom Date</property>
+                            <child>
+                              <object class="AdwComboRow" id="month_row_pay">
+                                <property name="model">
+                                  <object class="GtkStringList">
+                                    <items>
+                                      <item>January</item>
+                                      <item>February</item>
+                                      <item>March</item>
+                                      <item>April</item>
+                                      <item>May</item>
+                                      <item>June</item>
+                                      <item>July</item>
+                                      <item>August</item>
+                                      <item>September</item>
+                                      <item>October</item>
+                                      <item>November</item>
+                                      <item>December</item>
+                                    </items>
+                                  </object>
+                                </property>
+                                <property name="title">Month</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="AdwSpinRow" id="day_spin_row_pay">
+                                <property name="adjustment">
+                                  <object class="GtkAdjustment">
+                                    <property name="lower">1.0</property>
+                                    <property name="step-increment">1.0</property>
+                                    <property name="upper">31.0</property>
+                                  </object>
+                                </property>
+                                <property name="subtitle-selectable">True</property>
+                                <property name="title">Day</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="AdwSpinRow" id="years_spin_row_pay">
+                                <property name="adjustment">
+                                  <object class="GtkAdjustment">
+                                    <property name="lower">2024.0</property>
+                                    <property name="step-increment">1.0</property>
+                                    <property name="upper">2040.0</property>
+                                    <property name="value">2025.0</property>
+                                  </object>
+                                </property>
+                                <property name="title">Years</property>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="AdwExpanderRow">
+                            <property name="title">Note</property>
+                            <child>
+                              <object class="AdwEntryRow" id="note_entry_row_pay"/>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
                     <style>
-                      <class name="card"/>
+                      <class name="boxed-list"/>
                     </style>
                   </object>
-                </child>
-                <child>
-                  <object class="AdwPreferencesGroup">
-                    <property name="title">info client</property>
-                    <child>
-                      <object class="AdwActionRow" id="address_row">
-                        <property name="title">Address</property>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="AdwActionRow" id="price_row">
-                        <property name="title">Price</property>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="AdwActionRow" id="freq_row">
-                        <property name="title">Frequency</property>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="AdwExpanderRow">
-                        <property name="title">Payements and Jobs done</property>
-                        <child>
-                          <object class="AdwActionRow">
-                            <property name="subtitle">3 done </property>
-                            <property name="title">Number of Jobs done</property>
-                            <child>
-                              <object class="GtkButton">
-                                <property name="halign">center</property>
-                                <property name="icon-name">gtk-info</property>
-                                <property name="valign">center</property>
-                              </object>
-                            </child>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="AdwActionRow">
-                            <property name="subtitle">30$ missing 60$</property>
-                            <property name="title">Payement done</property>
-                            <child>
-                              <object class="GtkButton">
-                                <property name="halign">center</property>
-                                <property name="icon-name">gtk-info</property>
-                                <property name="valign">center</property>
-                              </object>
-                            </child>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="AdwSwitchRow" id="bag_row">
-                        <property name="title">Bag</property>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="AdwExpanderRow">
-                        <property name="title">Note</property>
-                        <child>
-                          <object class="AdwActionRow" id="note_entry"/>
-                        </child>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-                <child>
-                  <object class="AdwPreferencesGroup">
-                    <property name="title">Jobs</property>
-                    <child>
-                      <object class="AdwActionRow">
-                        <property name="title">Add Jobs Done</property>
-                        <child>
-                          <object class="GtkButton">
-                            <property name="action-name">win.add_job</property>
-                            <property name="halign">center</property>
-                            <property name="label">Add Job!</property>
-                            <property name="valign">center</property>
-                            <style>
-                              <class name="suggested-action"/>
-                            </style>
-                          </object>
-                        </child>
-                        <!-- Custom object fragments -->
-                      </object>
-                    </child>
-                    <child>
-                      <object class="AdwExpanderRow">
-                        <property name="enable-expansion">False</property>
-                        <property name="show-enable-switch">True</property>
-                        <property name="title">Custom Date</property>
-                        <child>
-                          <object class="AdwComboRow" id="month_row_jobs">
-                            <property name="model">
-                              <object class="GtkStringList">
-                                <items>
-                                  <item>January</item>
-                                  <item>February</item>
-                                  <item>March</item>
-                                  <item>April</item>
-                                  <item>May</item>
-                                  <item>June</item>
-                                  <item>July</item>
-                                  <item>August</item>
-                                  <item>September</item>
-                                  <item>October</item>
-                                  <item>November</item>
-                                  <item>December</item>
-                                </items>
-                              </object>
-                            </property>
-                            <property name="title">Month</property>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="AdwSpinRow" id="day_spin_row_job">
-                            <property name="adjustment">
-                              <object class="GtkAdjustment">
-                                <property name="lower">1.0</property>
-                                <property name="step-increment">1.0</property>
-                                <property name="upper">31.0</property>
-                              </object>
-                            </property>
-                            <property name="subtitle-selectable">True</property>
-                            <property name="title">Day</property>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="AdwSpinRow" id="years_spin_row_jobs">
-                            <property name="adjustment">
-                              <object class="GtkAdjustment">
-                                <property name="lower">2024.0</property>
-                                <property name="step-increment">1.0</property>
-                                <property name="upper">2040.0</property>
-                                <property name="value">2025.0</property>
-                              </object>
-                            </property>
-                            <property name="title">Years</property>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-                <child>
-                  <object class="AdwPreferencesGroup">
-                    <property name="title">Payements</property>
-                    <child>
-                      <object class="AdwActionRow">
-                        <property name="title">Add Payement</property>
-                        <child>
-                          <object class="GtkButton">
-                            <property name="action-name">win.add_payement</property>
-                            <property name="halign">center</property>
-                            <property name="label">Add Payement!</property>
-                            <property name="valign">center</property>
-                            <style>
-                              <class name="suggested-action"/>
-                            </style>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="AdwSwitchRow" id="is_cash_row">
-                        <property name="title">Cash?</property>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="AdwSpinRow" id="custom_payement_row">
-                        <property name="adjustment">
-                          <object class="GtkAdjustment">
-                            <property name="step-increment">0.5</property>
-                            <property name="upper">200.0</property>
-                          </object>
-                        </property>
-                        <property name="digits">1</property>
-                        <property name="title">Payements</property>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="AdwExpanderRow">
-                        <property name="enable-expansion">False</property>
-                        <property name="show-enable-switch">True</property>
-                        <property name="title">Custom Date</property>
-                        <child>
-                          <object class="AdwComboRow" id="month_row_pay">
-                            <property name="model">
-                              <object class="GtkStringList">
-                                <items>
-                                  <item>January</item>
-                                  <item>February</item>
-                                  <item>March</item>
-                                  <item>April</item>
-                                  <item>May</item>
-                                  <item>June</item>
-                                  <item>July</item>
-                                  <item>August</item>
-                                  <item>September</item>
-                                  <item>October</item>
-                                  <item>November</item>
-                                  <item>December</item>
-                                </items>
-                              </object>
-                            </property>
-                            <property name="title">Month</property>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="AdwSpinRow" id="day_spin_row_pay">
-                            <property name="adjustment">
-                              <object class="GtkAdjustment">
-                                <property name="lower">1.0</property>
-                                <property name="step-increment">1.0</property>
-                                <property name="upper">31.0</property>
-                              </object>
-                            </property>
-                            <property name="subtitle-selectable">True</property>
-                            <property name="title">Day</property>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="AdwSpinRow" id="years_spin_row_pay">
-                            <property name="adjustment">
-                              <object class="GtkAdjustment">
-                                <property name="lower">2024.0</property>
-                                <property name="step-increment">1.0</property>
-                                <property name="upper">2040.0</property>
-                                <property name="value">2025.0</property>
-                              </object>
-                            </property>
-                            <property name="title">Years</property>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-                <style>
-                  <class name="boxed-list"/>
-                </style>
+                </property>
+                <property name="margin-bottom">20</property>
+                <property name="margin-end">20</property>
+                <property name="margin-start">20</property>
+                <property name="margin-top">20</property>
               </object>
             </property>
-            <property name="margin-bottom">20</property>
-            <property name="margin-end">20</property>
-            <property name="margin-start">20</property>
-            <property name="margin-top">20</property>
           </object>
         </property>
         <property name="title">Clients liste</property>
