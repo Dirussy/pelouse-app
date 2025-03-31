@@ -127,7 +127,7 @@
 	(2,11,"AdwSpinRow","digits","1",None,None,None,None,None,None,None,None,None),
 	(2,11,"AdwSpinRow","value","1.0",None,None,None,None,None,None,None,None,None),
 	(2,12,"GtkAdjustment","step-increment","0.5",None,None,None,None,None,None,None,None,None),
-	(2,12,"GtkAdjustment","upper","100.0",None,None,None,None,None,None,None,None,None),
+	(2,12,"GtkAdjustment","upper","10000.0",None,None,None,None,None,None,None,None,None),
 	(2,13,"AdwActionRow","icon-name","view-calendar-week",None,None,None,None,None,None,None,None,None),
 	(2,13,"AdwActionRow","subtitle","Frequency",None,None,None,None,None,None,None,None,None),
 	(2,13,"AdwSpinRow","adjustment",None,None,None,None,None,14,None,None,None,None),
