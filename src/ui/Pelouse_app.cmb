@@ -214,7 +214,7 @@
 	(4,42,"AdwSpinRow","adjustment",None,None,None,None,None,43,None,None,None,None),
 	(4,42,"AdwSpinRow","digits","1",None,None,None,None,None,None,None,None,None),
 	(4,43,"GtkAdjustment","step-increment","0.5",None,None,None,None,None,None,None,None,None),
-	(4,43,"GtkAdjustment","upper","200.0",None,None,None,None,None,None,None,None,None),
+	(4,43,"GtkAdjustment","upper","10000.0",None,None,None,None,None,None,None,None,None),
 	(4,44,"AdwPreferencesRow","title","Cash?",None,None,None,None,None,None,None,None,None),
 	(4,45,"AdwPreferencesRow","title","Payements and Jobs done",None,None,None,None,None,None,None,None,None),
 	(4,46,"AdwActionRow","subtitle","3 done ",None,None,None,None,None,None,None,None,None),
