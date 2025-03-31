@@ -138,11 +138,15 @@ impl ObjectSubclass for PageConsultClient {
             }
 
             let dialog = AlertDialog::new(Some("Add New Payement!"), None);
-            dialog.set_body(&format!("Name : {}\n Day: {}\n Month: {}\n Years: {}",
+            dialog.set_body(&format!("Name : {}\n Day: {}\n Month: {}\n Years: {}\n Pay: {}$\n Is cash: {}\n Note: {}",
                 client_name,
                 day,
                 month,
-                year));
+                year,
+                win.imp().custom_payement_row.value(), 
+                win.imp().is_cash_row.is_active(),
+                &win.imp().note_entry_row_pay.text().to_string()
+            ));
             
             dialog.add_responses(&[("cancel", "Cancel") ,("add_pay", "Add pay")]);
             dialog.set_close_response("cancel");
