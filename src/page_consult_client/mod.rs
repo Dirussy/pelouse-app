@@ -45,7 +45,15 @@ impl PageConsultClient {
                 
                 let conn = Connection::open("PelouseData.db").expect("Cannot open database");
 
-                let mut stmt = conn.prepare("SELECT name_client FROM liste_clients").expect("Error from select");
+                let mut stmt = match conn.prepare("SELECT name_client FROM liste_clients")
+                {
+                    Ok(conn) => conn,
+                    Err(_) => {
+                        println!("No client in file!");
+                        return;
+                    },
+                };
+                
                 let client_iter = stmt.query_map([], |row| {
                     Ok(ClientIter {
                         name: row.get(0)?,
