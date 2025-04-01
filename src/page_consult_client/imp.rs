@@ -78,12 +78,12 @@ impl ObjectSubclass for PageConsultClient {
 
             println!("add jobs!");
             
-            let mut month = win.imp().month_row_jobs.selected()as u32 + 1;
+            let mut month = win.imp().month_row_jobs.selected() + 1;
             let mut day = win.imp().day_spin_row_job.value() as u32;
             let mut year = win.imp().years_spin_row_jobs.value() as i32;
             let client_name = win.get_selected_client_name();
             //is custom date enable 
-            if win.imp().custom_date_job.enables_expansion() == false
+            if !win.imp().custom_date_job.enables_expansion()
             {
                 let local_date = chrono::Local::now();
                 month = local_date.month();
@@ -124,12 +124,12 @@ impl ObjectSubclass for PageConsultClient {
 
         klass.install_action_async("win.add_payement", None, |win,_,_| async move {
             println!("add payement!");
-            let mut month = win.imp().month_row_pay.selected()as u32 + 1;
+            let mut month = win.imp().month_row_pay.selected() + 1;
             let mut day = win.imp().day_spin_row_pay.value() as u32;
             let mut year = win.imp().years_spin_row_pay.value() as i32;
             let client_name = win.get_selected_client_name();
             //is custom date enable 
-            if win.imp().custom_date_pay.enables_expansion() == false
+            if !win.imp().custom_date_pay.enables_expansion()
             {
                 let local_date = chrono::Local::now();
                 month = local_date.month();
@@ -166,7 +166,7 @@ impl ObjectSubclass for PageConsultClient {
                     day, 
                     month, 
                     year, 
-                    &win.imp().note_entry_row_pay.text().to_string(), 
+                    win.imp().note_entry_row_pay.text().as_ref(), 
                     win.imp().is_cash_row.is_active(), 
                     client_id
                 );

@@ -30,12 +30,12 @@ impl PageNewClient {
         let toggle_bag = &*imp.toggle_bag_row;
         let entry_optional_info = &*imp.entry_row_note;
         let new_client = Client::new(
-                &entry_name.text().as_str(),
-                &entry_address.text().as_str(),
+                entry_name.text().as_str(),
+                entry_address.text().as_str(),
                 price_entry.value(),
                 frequency_entry.value() as u32,
                 toggle_bag.is_active(),
-                &entry_optional_info.text().as_str()
+                entry_optional_info.text().as_str()
             );
         new_client
     }

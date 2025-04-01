@@ -64,7 +64,7 @@ impl ObjectSubclass for PageNewClient {
                 let new_client = win.charger_info_client();
                 let database = connect_database("PelouseData.db")
                     .expect("Erreur when oppening database!");
-                if add_client(&database, &new_client) == true
+                if add_client(&database, &new_client)
                 {
                     let toast = adw::Toast::new("Client Added succefully!");
                     win.imp().overlay.add_toast(toast);

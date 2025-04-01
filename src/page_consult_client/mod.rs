@@ -100,17 +100,17 @@ impl PageConsultClient {
     }
     pub fn get_selected_client_name(&self) -> String {
         let drop_down = &*self.imp().drop_down_client;
-        let client_name = match drop_down.selected_item()
+        match drop_down.selected_item()
         {
             Some(obj) => obj.downcast::<gtk::StringObject>().unwrap().string().into(),
             None => String::from("None")
-        };
-        client_name
+        }
+        
     }
     pub fn load_page_consult_client(&self, client : &Client)
     {
         let address_row = &*self.imp().address_row;
-        address_row.set_subtitle(&client.address());
+        address_row.set_subtitle(client.address());
         let price_row = &*self.imp().price_row;
         price_row.set_subtitle(format!("{}$", &client.cost()).as_str());
         let freq_row = &*self.imp().freq_row;
@@ -118,7 +118,7 @@ impl PageConsultClient {
         let bag_row = &*self.imp().bag_row;
         bag_row.set_active(*client.is_bag_use());
         let note_row = &*self.imp().note_entry;
-        note_row.set_subtitle(&client.note());
+        note_row.set_subtitle(client.note());
         let custom_pay_row = &*self.imp().custom_payement_row;
         custom_pay_row.set_value(*client.cost());
 

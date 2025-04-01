@@ -26,13 +26,13 @@ impl Payement {
     pub fn new(pay: f64, date: u32, month: u32, year: i32, note: &str, is_cash:bool, client_id: u32) -> Payement
     {
         Payement { 
-            pay: pay, 
-            date: date, 
-            month: month, 
-            year: year,
-            is_cash: is_cash,
+            pay, 
+            date, 
+            month, 
+            year,
+            is_cash,
             note: note.to_string(),
-            client_id: client_id
+            client_id
          }
     }
     pub fn add_payement(&self, database : &Connection) -> bool
@@ -48,9 +48,9 @@ impl Client{
         Client{
             name : name.to_string(),
             address : address.to_string(),
-            cost : cost,
-            freq : freq,
-            bag: bag,
+            cost,
+            freq,
+            bag,
             note : note.to_string()
         }
     } 
