@@ -47,7 +47,7 @@
                           <object class="AdwExpanderRow">
                             <property name="title">Payements and Jobs done</property>
                             <child>
-                              <object class="AdwActionRow">
+                              <object class="AdwActionRow" id="nb_job_done">
                                 <property name="subtitle">3 done </property>
                                 <property name="title">Number of Jobs done</property>
                                 <child>
@@ -60,7 +60,7 @@
                               </object>
                             </child>
                             <child>
-                              <object class="AdwActionRow">
+                              <object class="AdwActionRow" id="nb_pay_done">
                                 <property name="subtitle">30$ missing 60$</property>
                                 <property name="title">Payement done</property>
                                 <child>

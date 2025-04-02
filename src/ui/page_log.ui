@@ -13,17 +13,17 @@
                 <property name="orientation">vertical</property>
                 <child>
                   <object class="AdwPreferencesGroup">
-                    <property name="title">Clients log</property>
+                    <property name="title">Today Jobs</property>
                   </object>
                 </child>
                 <child>
                   <object class="AdwPreferencesGroup">
-                    <property name="title">Job log</property>
+                    <property name="title">Late Jobs</property>
                   </object>
                 </child>
                 <child>
                   <object class="AdwPreferencesGroup">
-                    <property name="title">Paymentent log</property>
+                    <property name="title">Tomorow Jobs</property>
                   </object>
                 </child>
               </object>

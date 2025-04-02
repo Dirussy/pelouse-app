@@ -104,6 +104,10 @@ impl Client{
     pub fn note(&self) -> &String{
         &self.note
     }
+    pub fn get_client_id(&self, database : &Connection) -> Result<u32>
+    {
+        get_client_id(self.name().into(), database)
+    }
     
     
 }
@@ -162,4 +166,11 @@ pub fn add_pelouse(database : &Connection, day : u32, month: u32, year: i32, cli
         "INSERT INTO liste_pelouse (day, month, year, client_id) VALUES (?1, ?2, ?3, ?4)",
         (day, month, year, client_id),
     ).is_ok()
+}
+pub fn get_client_id(client_name: &String,  database : &Connection) -> Result<u32> {
+    database.query_row_and_then(
+        "SELECT id FROM liste_clients WHERE name_client=?1",
+        [client_name],
+        |row| row.get(0),
+    )
 }

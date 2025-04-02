@@ -10,7 +10,7 @@ use gtk::{glib, CompositeTemplate, DropDown};
 
 use rusqlite::{self, Connection};
 
-use crate::sqlite_functions::{add_pelouse, Payement};
+use crate::sqlite_functions::{add_pelouse, get_client_id, Client, Payement};
 
 // Object holding the state
 #[derive(CompositeTemplate, Default)]
@@ -31,6 +31,10 @@ pub struct PageConsultClient {
     pub note_entry: TemplateChild<adw::ActionRow>,
     #[template_child]
     pub overlay: TemplateChild<adw::ToastOverlay>,
+    #[template_child]
+    pub nb_job_done: TemplateChild<adw::ActionRow>,
+    #[template_child]
+    pub nb_pay_done: TemplateChild<adw::ActionRow>,
     //Jobs Groups
     #[template_child]
     pub custom_date_job: TemplateChild<adw::ExpanderRow>,
@@ -107,11 +111,13 @@ impl ObjectSubclass for PageConsultClient {
                 let conn = Connection::open("PelouseData.db").expect("Cannot open database");
                 let client_id:  u32 = conn.query_row_and_then(
                     "SELECT id FROM liste_clients WHERE name_client=?1",
-                    [client_name],
+                    [&client_name],
                     |row| row.get(0),
                 ).unwrap();
                 if add_pelouse(&conn, day, month, year, client_id)
                 {
+                    let client = Client::laod_from_name(&client_name);
+                    win.load_client_job_pay_done(&client);
                     let toast = adw::Toast::new("Job Added succefully!");
                     win.imp().overlay.add_toast(toast);
                 }else {
@@ -155,12 +161,10 @@ impl ObjectSubclass for PageConsultClient {
 
             if reponse  == "add_pay"
             {
-                let conn = Connection::open("PelouseData.db").expect("Cannot open database");
-                let client_id:  u32 = conn.query_row_and_then(
-                    "SELECT id FROM liste_clients WHERE name_client=?1",
-                    [client_name],
-                    |row| row.get(0),
-                ).unwrap();
+                let conn: Connection = Connection::open("PelouseData.db").expect("Cannot open database");
+                
+                let client_id = get_client_id(&client_name, &conn).unwrap();
+
                 let pay = Payement::new(
                     win.imp().custom_payement_row.value(), 
                     day, 
@@ -172,6 +176,8 @@ impl ObjectSubclass for PageConsultClient {
                 );
                 if pay.add_payement(&conn)
                 {
+                    let client = Client::laod_from_name(&client_name);
+                    win.load_client_job_pay_done(&client);
                     let toast = adw::Toast::new("Pay Added succefully!");
                     win.imp().overlay.add_toast(toast);
                 }else {
