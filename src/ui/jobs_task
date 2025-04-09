@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Created with Cambalache 0.94.1 -->
+<interface>
+  <requires lib="gtk" version="4.12"/>
+  <requires lib="libadwaita" version="1.3"/>
+  <template class="jobs_task" parent="AdwBin">
+    <child>
+      <object class="AdwActionRow">
+        <property name="subtitle">Today!</property>
+        <property name="title">Maxim Guerard</property>
+        <child>
+          <object class="GtkButton">
+            <property name="label">Add Job!</property>
+            <style>
+              <class name="suggested-action"/>
+            </style>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>

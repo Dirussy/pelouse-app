@@ -24,6 +24,7 @@ use gtk::{gio, glib};
 
 use crate::page_new_client::PageNewClient;
 use crate::page_consult_client::PageConsultClient;
+use crate::page_log::PageLog;
 
 mod imp {
     use super::*;
@@ -44,6 +45,9 @@ mod imp {
     pub page_new_client: TemplateChild<PageNewClient>,
     #[template_child]
     pub page_consult_client: TemplateChild<PageConsultClient>,
+    #[template_child]
+    pub page_log: TemplateChild<PageLog>,
+    
     }
 
     #[glib::object_subclass]

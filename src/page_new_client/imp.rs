@@ -2,7 +2,7 @@
 // use std::cell::RefCell;
 
 use glib::subclass::InitializingObject;
-use adw::{prelude::*};
+use adw::prelude::*;
 use adw::AlertDialog;
 use adw::subclass::prelude::*;
 use gtk::{glib, CompositeTemplate};
