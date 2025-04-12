@@ -80,6 +80,9 @@
             <child>
               <object class="AdwStatusPage">
                 <property name="title">Today jobs list</property>
+                <child>
+                  <object class="AdwPreferencesGroup" id="today_job_group"/>
+                </child>
               </object>
             </child>
           </object>

@@ -6,7 +6,7 @@ use adw::{prelude::*};
 use adw::subclass::prelude::*;
 use gtk::{glib, CompositeTemplate};
 
-
+use crate::task_job::JobTask;
 
 // Object holding the state
 #[derive(CompositeTemplate, Default)]
@@ -14,6 +14,8 @@ use gtk::{glib, CompositeTemplate};
 pub struct PageLog {
     #[template_child]
     pub log_page_navigation_view: TemplateChild<adw::NavigationView>,
+    #[template_child]
+    pub today_job_group: TemplateChild<adw::PreferencesGroup>,
 
 }
 
@@ -32,7 +34,14 @@ impl ObjectSubclass for PageLog {
         klass.install_action_async("win.today_row_clicked",  None, |win,_,_| async move {
             println!("Clicked Action Row Today!");
             let nav_view = &*win.imp().log_page_navigation_view;
+            let task_group = &*win.imp().today_job_group; 
+            let job = JobTask::new();
+            let action_row = &*job.imp().action_row;
+            action_row.set_title("test");
+            task_group.add(&job);
+
             nav_view.push_by_tag("today_job");
+
         });
         klass.install_action_async("win.late_row",  None, |win,_,_| async move {
             let nav_view = &*win.imp().log_page_navigation_view;

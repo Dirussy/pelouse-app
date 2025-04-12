@@ -6,7 +6,7 @@
 	(2,2,None,"page_newclient.ui",None,None,None,None,None,None,None),
 	(3,7,None,"page_log.ui",None,None,None,None,None,None,None),
 	(4,14,None,"page_consult_client.ui",None,None,None,None,None,None,None),
-	(5,1,None,"jobs_task",None,None,None,None,None,None,None)
+	(5,1,None,"jobs_task.ui",None,None,None,None,None,None,None)
   </ui>
   <object>
 	(1,1,"AdwApplicationWindow","PelouseAppRustWindow",None,None,None,None,0,"",None),
@@ -61,6 +61,7 @@
 	(3,28,"AdwStatusPage",None,22,None,None,None,0,None,None),
 	(3,29,"AdwStatusPage",None,23,None,None,None,0,None,None),
 	(3,30,"AdwStatusPage",None,26,None,None,None,0,None,None),
+	(3,31,"AdwPreferencesGroup","today_job_group",17,None,None,None,0,None,None),
 	(4,1,"AdwStatusPage",None,14,None,None,None,0,None,None),
 	(4,2,"AdwClamp",None,50,None,None,None,0,None,None),
 	(4,3,"GtkBox",None,2,None,None,None,0,None,None),
@@ -105,8 +106,8 @@
 	(4,50,"AdwToastOverlay","overlay",1,None,None,None,0,None,None),
 	(4,51,"AdwExpanderRow",None,32,None,None,None,4,None,None),
 	(4,52,"AdwEntryRow","note_entry_row_pay",51,None,None,None,0,None,None),
-	(5,1,"AdwBin","jobs_task",None,None,None,None,0,None,None),
-	(5,2,"AdwActionRow",None,1,None,None,None,0,None,None),
+	(5,1,"AdwBin","JobTask",None,None,None,None,0,None,None),
+	(5,2,"AdwActionRow","action_row",1,None,None,None,0,None,None),
 	(5,3,"GtkButton",None,2,None,None,None,0,None,None)
   </object>
   <object_property>
@@ -275,6 +276,7 @@
 	(4,49,"GtkWidget","valign","center",None,None,None,None,None,None,None,None,None),
 	(4,50,"AdwToastOverlay","child","2",None,None,None,None,2,None,None,None,None),
 	(4,51,"AdwPreferencesRow","title","Note",None,None,None,None,None,None,None,None,None),
+	(5,1,"GtkWidget","valign","center",None,None,None,None,None,None,None,None,None),
 	(5,2,"AdwActionRow","subtitle","Today!",None,None,None,None,None,None,None,None,None),
 	(5,2,"AdwPreferencesRow","title","Maxim Guerard",None,None,None,None,None,None,None,None,None),
 	(5,3,"GtkButton","label","Add Job!",None,None,None,None,None,None,None,None,None)
