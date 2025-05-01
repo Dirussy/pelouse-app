@@ -15,6 +15,7 @@ pub struct Client{
 #[derive(Debug, Default)]
 pub struct TaskClient{
     name: String,
+    address: String,
     client_id : u32,
     nb_days: Option<i64>,
     irregulier: bool,
@@ -125,6 +126,9 @@ impl TaskClient {
     pub fn name(&self) -> &String{
         &self.name
     }
+    pub fn address(&self) -> &String{
+        &self.address
+    }
     pub fn client_id(&self) -> &u32{
         &self.client_id
     }
@@ -205,16 +209,17 @@ pub fn load_list_client_last_job(path :&str) -> Result<Vec<TaskClient>>
 {
     let conn = connect_database(path)?;
     // Retrieve data from users table
-    let mut stmt = conn.prepare("SELECT id, name_client, freq FROM liste_clients")?;
+    let mut stmt = conn.prepare("SELECT id, name_client, address, freq FROM liste_clients")?;
     let user_iter = stmt.query_map([], |row| {
         Ok(TaskClient {
             client_id: row.get(0)?,
             name: row.get(1)?,
-            nb_days: match row.get(2)? {
+            address: row.get(2)?,
+            nb_days: match row.get(3)? {
                 Some(t) => Some(t),
                 None => None,
             },
-            irregulier: match row.get(2)? {
+            irregulier: match row.get(3)? {
                 Some(0) => true,
                 _ => false,
             },
@@ -227,6 +232,7 @@ pub fn load_list_client_last_job(path :&str) -> Result<Vec<TaskClient>>
         let task_client = TaskClient{
             client_id: temp.client_id.clone(),
             name: temp.name.clone(),
+            address : temp.address.clone(),
             nb_days: get_nb_day_last_job(temp.client_id.clone(),temp.nb_days.clone() , &conn),
             irregulier: temp.irregulier.clone(),
         };

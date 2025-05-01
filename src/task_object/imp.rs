@@ -13,6 +13,7 @@ use super::TaskData;
 pub struct TaskObject {
     #[property(name = "value", get, set, type = i64, member = nb_days)]
     #[property(name = "content", get, set, type = String, member = content)]
+    #[property(name = "address", get, set, type = String, member = address)]
     #[property(name = "complete", get, set, type = bool, member = irregular)]
     pub data: RefCell<TaskData>,
 }

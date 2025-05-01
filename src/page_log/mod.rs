@@ -8,7 +8,7 @@ use adw::subclass::prelude::*;
 use gtk::{prelude::*, ListItem, CustomFilter, FilterListModel, SortListModel, CustomSorter};
 
 
-use crate::task_job::JobTask;
+// use crate::task_job::JobTask;
 use crate::task_object::TaskObject;
 use crate::sqlite_functions::{load_list_client_last_job};
 
@@ -167,15 +167,15 @@ impl PageLog {
                     Some(days) => days.clone(),
                     None => i64::MIN,
                 }
-            });
+            }, task.address());
         }
     }
 
-    fn new_task(&self,content : &str, irregular: bool, nb_days: i64) {
+    fn new_task(&self,content : &str, irregular: bool, nb_days: i64, address: &str) {
         // Get content from entry and clear it
 
         // Add new task to model
-        let task = TaskObject::new(nb_days,irregular, content.to_string());
+        let task = TaskObject::new(nb_days,irregular, content.to_string(), address.to_string());
         self.tasks().append(&task);
     }
 
@@ -208,38 +208,33 @@ impl PageLog {
         }))
     }
     
-
-
     fn create_task_row(&self, task_object: &TaskObject) -> ActionRow {
-        // // Create check button
-        // let check_button = CheckButton::builder()
-        //     .valign(Align::Center)
-        //     .can_focus(false)
-        //     .build();
 
         // Create row
         let row = ActionRow::builder()
             // .activatable_widget(&check_button)
             .build();
-        let task_row = JobTask::new();
-         row.add_prefix(&task_row);
 
-        // // Bind properties
-        // task_object
-        //     .bind_property("completed", &check_button, "active")
-        //     .bidirectional()
-        //     .sync_create()
-        //     .build();
-        task_row.bind(task_object);
-        let days = task_object.number_of_day();
+        row.set_title(&task_object.imp().data.borrow().content);
+        row.set_subtitle(&task_object.imp().data.borrow().address);
 
-        let day_label = match days{
-            0 => "Today",
-            i64::MIN => "First",
-            _ => &format!("days: {}", days),
-        };
-        task_row.imp().day_label.set_label(day_label);
-        // Return row
+        let day_label = gtk::Label::builder().label(
+        {
+            let days = task_object.number_of_day();
+
+            let day_label = match days {
+                0 => "Today".to_string(),
+                i64::MIN => "First".to_string(),
+                _ => format!("days: {}", days),
+            };
+            day_label
+        }).build();
+        day_label.add_css_class("card");
+        day_label.set_width_request(100);
+        day_label.set_height_request(50);
+        day_label.set_valign(gtk::Align::Center);
+        row.add_suffix(&day_label);
+
         row
     }
     

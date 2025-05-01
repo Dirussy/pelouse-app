@@ -6,7 +6,7 @@ use adw::{prelude::*};
 use adw::subclass::prelude::*;
 use gtk::{gio, glib, CompositeTemplate, ListBox};
 
-use crate::task_job::JobTask;
+// use crate::task_job::JobTask;
 
 // Object holding the state
 #[derive(CompositeTemplate, Default)]

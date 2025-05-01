@@ -9,10 +9,11 @@ glib::wrapper! {
 }
 
 impl TaskObject {
-    pub fn new(nb_days: i64, irregular: bool, content: String) -> Self {
+    pub fn new(nb_days: i64, irregular: bool, content: String, address: String) -> Self {
         Object::builder()
             .property("value", nb_days)
             .property("content", content)
+            .property("address", address)
             .property("complete", irregular)
             .build()
     }
@@ -29,4 +30,5 @@ pub struct TaskData {
     pub nb_days: i64,
     pub irregular : bool,
     pub content: String,
+    pub address: String,
 }
