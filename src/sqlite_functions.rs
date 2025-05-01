@@ -1,3 +1,4 @@
+use chrono::{Datelike, NaiveDate};
 //SQLite function
 use rusqlite::{Connection, Result};
 
@@ -9,6 +10,14 @@ pub struct Client{
     freq : u32,
     bag : bool,
     note : String,
+}
+
+#[derive(Debug, Default)]
+pub struct TaskClient{
+    name: String,
+    client_id : u32,
+    nb_days: Option<i64>,
+    irregulier: bool,
 }
 
 #[derive(Debug, Default)]
@@ -111,6 +120,23 @@ impl Client{
     
     
 }
+
+impl TaskClient {
+    pub fn name(&self) -> &String{
+        &self.name
+    }
+    pub fn client_id(&self) -> &u32{
+        &self.client_id
+    }
+    pub fn nb_days(&self) -> &Option<i64>
+    {
+        &self.nb_days
+    }
+    pub fn irregular(&self) -> &bool{
+        &self.irregulier
+    }
+}
+
 pub fn connect_database(path_to_file : &str) -> Result<Connection>
 {
     let conn = Connection::open(path_to_file)?;
@@ -173,4 +199,74 @@ pub fn get_client_id(client_name: &String,  database : &Connection) -> Result<u3
         [client_name],
         |row| row.get(0),
     )
+}
+
+pub fn load_list_client_last_job(path :&str) -> Result<Vec<TaskClient>>
+{
+    let conn = connect_database(path)?;
+    // Retrieve data from users table
+    let mut stmt = conn.prepare("SELECT id, name_client, freq FROM liste_clients")?;
+    let user_iter = stmt.query_map([], |row| {
+        Ok(TaskClient {
+            client_id: row.get(0)?,
+            name: row.get(1)?,
+            nb_days: match row.get(2)? {
+                Some(t) => Some(t),
+                None => None,
+            },
+            irregulier: match row.get(2)? {
+                Some(0) => true,
+                _ => false,
+            },
+        })
+    })?;
+    
+    let mut liste_task: Vec<TaskClient> = Vec::new();
+    for user in user_iter {
+        let temp = user?;
+        let task_client = TaskClient{
+            client_id: temp.client_id.clone(),
+            name: temp.name.clone(),
+            nb_days: get_nb_day_last_job(temp.client_id.clone(),temp.nb_days.clone() , &conn),
+            irregulier: temp.irregulier.clone(),
+        };
+        liste_task.push(task_client);
+    }
+    Ok(liste_task)
+} 
+
+fn get_nb_day_last_job(client_id: u32,nb_days : Option<i64>, conn : &Connection) -> Option<i64>
+{
+    let mut stmt = conn.prepare(&format!("SELECT day, month, year FROM liste_pelouse WHERE client_id = {}", client_id) )
+        .expect("Error in preparing queary");
+    let job_iter = stmt.query_map([], |row| {
+        Ok(NaiveDate::from_ymd_opt(row.get(2)?, row.get(1)?, row.get(0)?).expect("Date invalid!"))
+    }).unwrap();
+    let mut day_min = i64::MIN;
+    let day = match nb_days {
+        Some(day) => day,
+        None => 0,
+    };
+    let local_time = chrono::Local::now();
+    let naive_local_time = NaiveDate::from_ymd_opt(local_time.year(), local_time.month(), local_time.day());
+    // Iterate over the retrieved rows
+    for job in job_iter {
+
+        let dif_day = match job {
+            Err(_) => i64::MIN,
+            Ok(last_job) => {
+                    let dif_days = naive_local_time.unwrap() - last_job;
+                    day - dif_days.num_days()
+            }
+        };
+        if day_min < dif_day
+        {
+            day_min = dif_day
+        }
+    }
+    match day_min {
+        i64::MIN => None,
+        day=> Some(day),
+    }
+
 }

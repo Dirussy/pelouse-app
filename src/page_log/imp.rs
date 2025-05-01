@@ -1,10 +1,10 @@
 
-// use std::cell::RefCell;
+use std::cell::RefCell;
 
 use glib::subclass::InitializingObject;
 use adw::{prelude::*};
 use adw::subclass::prelude::*;
-use gtk::{glib, CompositeTemplate};
+use gtk::{gio, glib, CompositeTemplate, ListBox};
 
 use crate::task_job::JobTask;
 
@@ -13,9 +13,12 @@ use crate::task_job::JobTask;
 #[template(resource = "/org/gnome/pelouse_app_rust/ui/page_log.ui")]
 pub struct PageLog {
     #[template_child]
-    pub log_page_navigation_view: TemplateChild<adw::NavigationView>,
+    pub tasks_list: TemplateChild<ListBox>,
     #[template_child]
-    pub today_job_group: TemplateChild<adw::PreferencesGroup>,
+    pub drop_down: TemplateChild<gtk::DropDown>,
+    #[template_child]
+    pub list_string: TemplateChild<gtk::StringList>,
+    pub tasks: RefCell<Option<gio::ListStore>>
 
 }
 
@@ -30,35 +33,6 @@ impl ObjectSubclass for PageLog {
     fn class_init(klass: &mut Self::Class) {
 
         klass.bind_template();
-
-        klass.install_action_async("win.today_row_clicked",  None, |win,_,_| async move {
-            println!("Clicked Action Row Today!");
-            let nav_view = &*win.imp().log_page_navigation_view;
-            let task_group = &*win.imp().today_job_group; 
-            let job = JobTask::new();
-            let action_row = &*job.imp().action_row;
-            action_row.set_title("test");
-            task_group.add(&job);
-
-            nav_view.push_by_tag("today_job");
-
-        });
-        klass.install_action_async("win.late_row",  None, |win,_,_| async move {
-            let nav_view = &*win.imp().log_page_navigation_view;
-            nav_view.push_by_tag("late_page");
-        });
-        klass.install_action_async("win.next_row",  None, |win,_,_| async move {
-            let nav_view = &*win.imp().log_page_navigation_view;
-            nav_view.push_by_tag("next_page");
-        });
-        klass.install_action_async("win.irregular_row",  None, |win,_,_| async move {
-            let nav_view = &*win.imp().log_page_navigation_view;
-            nav_view.push_by_tag("irregular_page");
-        });
-        klass.install_action_async("win.new_row",  None, |win,_,_| async move {
-            let nav_view = &*win.imp().log_page_navigation_view;
-            nav_view.push_by_tag("new_page");
-        });
     }
 
     fn instance_init(obj: &InitializingObject<Self>) {
@@ -74,7 +48,8 @@ impl ObjectImpl for PageLog {
 
         //Setup
          let obj = self.obj();
-         obj.setup_page();
+        obj.setup_tasks();
+        obj.load_task_from_db("PelouseData.db");
     }
 }
 

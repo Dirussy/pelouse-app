@@ -1,132 +1,38 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<!-- Created with Cambalache 0.94.1 -->
+<!-- Created with Cambalache 0.96.0 -->
 <interface>
-  <requires lib="gtk" version="4.0"/>
-  <requires lib="libadwaita" version="1.6"/>
+  <!-- interface-name page_log.ui -->
+  <requires lib="gtk" version="4.16"/>
+  <requires lib="libadwaita" version="1.0"/>
   <template class="PageLog" parent="AdwBin">
     <property name="child">
-      <object class="AdwNavigationView" id="log_page_navigation_view">
+      <object class="AdwStatusPage">
+        <property name="title">Log data</property>
         <child>
-          <object class="AdwNavigationPage">
-            <property name="tag">selection_list_page</property>
+          <object class="GtkBox">
+            <property name="orientation">vertical</property>
+            <property name="spacing">20</property>
             <child>
-              <object class="AdwStatusPage">
-                <property name="child">
-                  <object class="AdwClamp">
-                    <property name="child">
-                      <object class="GtkBox">
-                        <property name="orientation">vertical</property>
-                        <child>
-                          <object class="AdwPreferencesGroup">
-                            <child>
-                              <object class="AdwButtonRow">
-                                <property name="action-name">win.today_row_clicked</property>
-                                <property name="title">Today Jobs</property>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="AdwButtonRow">
-                                <property name="action-name">win.late_row</property>
-                                <property name="title">Late Jobs</property>
-                                <style>
-                                  <class name="destructive-action"/>
-                                </style>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="AdwButtonRow">
-                                <property name="action-name">win.next_row</property>
-                                <property name="title">Next Jobs</property>
-                              </object>
-                            </child>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="AdwPreferencesGroup">
-                            <child>
-                              <object class="AdwButtonRow">
-                                <property name="action-name">win.irregular_row</property>
-                                <property name="title">Irregular Client Jobs</property>
-                              </object>
-                            </child>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="AdwPreferencesGroup">
-                            <child>
-                              <object class="AdwButtonRow">
-                                <property name="action-name">win.new_row</property>
-                                <property name="title">First/New Jobs</property>
-                              </object>
-                            </child>
-                          </object>
-                        </child>
-                      </object>
-                    </property>
-                    <property name="margin-bottom">20</property>
-                    <property name="margin-end">20</property>
-                    <property name="margin-start">20</property>
-                    <property name="margin-top">20</property>
+              <object class="GtkDropDown" id="drop_down">
+                <property name="model">
+                  <object class="GtkStringList" id="list_string">
+                    <items>
+                      <item>Today</item>
+                      <item>All</item>
+                      <item>Late</item>
+                      <item>Irregular</item>
+                      <item>First/New</item>
+                    </items>
                   </object>
                 </property>
-                <property name="title">Log data</property>
               </object>
             </child>
-          </object>
-        </child>
-        <child>
-          <object class="AdwNavigationPage">
-            <property name="tag">today_job</property>
             <child>
-              <object class="AdwStatusPage">
-                <property name="title">Today jobs list</property>
-                <child>
-                  <object class="AdwPreferencesGroup" id="today_job_group"/>
-                </child>
-              </object>
-            </child>
-          </object>
-        </child>
-        <child>
-          <object class="AdwNavigationPage">
-            <property name="tag">late_page</property>
-            <property name="title">Late jobs List</property>
-            <child>
-              <object class="AdwStatusPage">
-                <property name="title">Late jobs List</property>
-              </object>
-            </child>
-          </object>
-        </child>
-        <child>
-          <object class="AdwNavigationPage">
-            <property name="tag">next_page</property>
-            <property name="title">Next jobs list</property>
-            <child>
-              <object class="AdwStatusPage">
-                <property name="title">Next jobs list</property>
-              </object>
-            </child>
-          </object>
-        </child>
-        <child>
-          <object class="AdwNavigationPage">
-            <property name="tag">irregular_page</property>
-            <property name="title">Irregular jobs list</property>
-            <child>
-              <object class="AdwStatusPage">
-                <property name="title">Irregular jobs list</property>
-              </object>
-            </child>
-          </object>
-        </child>
-        <child>
-          <object class="AdwNavigationPage">
-            <property name="tag">new_page</property>
-            <property name="title">New jobs list</property>
-            <child>
-              <object class="AdwStatusPage">
-                <property name="title">New jobs list</property>
+              <object class="GtkListBox" id="tasks_list">
+                <property name="selection-mode">none</property>
+                <style>
+                  <class name="boxed-list"/>
+                </style>
               </object>
             </child>
           </object>
