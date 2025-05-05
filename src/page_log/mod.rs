@@ -87,6 +87,18 @@ impl PageLog {
             false
         });
 
+        let filter_incomming = CustomFilter::new(|obj| {
+            // Get `TaskObject` from `glib::Object`
+            let task_object = obj
+                .downcast_ref::<TaskObject>()
+                .expect("The object needs to be of type `TaskObject`.");
+
+                if task_object.number_of_day() > 0 && !task_object.is_irregular()
+                {
+                    return true;
+                }
+                false
+        });
 
         // Return the correct filter
         match filter_state.as_str() {
@@ -95,6 +107,7 @@ impl PageLog {
             "Late" => Some(filter_late),
             "Irregular" => Some(filter_irregular),
             "First/New" => Some(filter_new),
+            "Incomming" => Some(filter_incomming),
             _ => unreachable!(),
         }
     }

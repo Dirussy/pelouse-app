@@ -4,7 +4,7 @@
 <cambalache-project version="0.96.0" target_tk="gtk-4.0">
   <ui template-class="PageNewCLient" filename="page_newclient.ui" sha256="898559ba5c9db2b6341196f3caa353c284530c7331245860e5dafb94fe107adb"/>
   <ui template-class="PageConsultClient" filename="page_consult_client.ui" sha256="195ede689b74c2aba5a6962395a372d37a31bd3da7692286911eaa0b64b9800d"/>
-  <ui template-class="PageLog" filename="page_log.ui" sha256="c3d857b969fff9b66c9ebd5b6bd972933f52c5416fe426bbde1224095982fd77"/>
+  <ui template-class="PageLog" filename="page_log.ui" sha256="102865920d58820f6846604ebba12a7692fdf05b6aa63ad2f58bd2a31a3501d2"/>
   <ui template-class="JobTask" filename="jobs_task.ui" sha256="76c425460204e17094cca371ebc52f5fa91fc124b7ccc991e62cdd4564908f26"/>
   <ui template-class="PelouseAppRustWindow" filename="window.ui" sha256="26713c0e03142172816fd775bbf55ed5347a728542ad459505a5217286b35703">
     <requires>PageNewCLient</requires>
