@@ -46,7 +46,7 @@ impl PageLog {
                 .expect("The object needs to be of type `TaskObject`.");
 
             // Only allow done tasks
-            if task_object.number_of_day() == 0
+            if task_object.number_of_day() == 0 && !task_object.is_irregular()
             {
                 return true;
             }
